@@ -1,0 +1,148 @@
+﻿<html>
+<head>
+<style type="text/css">
+    .question-header{
+        font-size:0.8em;
+		font-family:Arial,Helvetica,sans-serif;
+		font-style:italic;
+		float:left;
+		vertical-align:top;
+		width:80px;
+    }
+	.question-content{
+		font-family:Arial, Helvetica, sans-serif;
+		float:left;
+		vertical-align:top;
+		width:500px;
+		font-size:0.8em;
+		font-weight:bold;
+		margin:0px 0px 10px 10px;
+		text-align:justify;	
+	}
+	.question-end{
+		border: 0 transparent; 
+		border-top: 1px solid #9b9b9b; 
+		border-bottom:1px solid #F4F4F4; 
+		margin:20px 0px 20px 0px;
+		width:590px;
+	}
+	.center{
+		  margin-left: 15%;
+	}
+	.reset-floats{
+		clear: both;
+		height:0px;
+	}
+	.input-wrapper{
+		display:block;
+		margin-bottom:10px;
+		margin-top:10px;
+		height:auto;
+		width:500px;
+	}
+	.error{
+		color:red;
+		font-weight:regular;
+	}
+</style>
+<script src="handlebars.js"></script>
+<script src="jquery-1.10.2.min.js"></script>
+<script src="jquery.validate.min.js"></script>
+<script src="additional-methods.min.js"></script>
+<script>
+jQuery.extend(jQuery.validator.messages, {
+    required: "Это обязательное поле."
+});
+</script>
+<script type ="text/javascript">
+        $(document).ready(function () {
+			var data = 	{
+				questions: [
+						{content: "Год рождения."},
+						{content: "Город, в котором вы живёте."},
+						{content: "Вуз, факультет, специальность, кафедра."},
+						{content: "Год окончания вуза."},
+						{content: "Уровень владения английским языком: <p><input type='checkbox' id='5_1' name='check5_1'>начальный;</p><p><input type='checkbox' id='5_2' name='check5_2'>"
+						+ "средний;</p><p><input type='checkbox' id='5_3' name='check5_3'>свободное владение;</p>"},
+						{content: "Чего вы ожидаете от участия в Школе?"},
+						{content: "Откуда вы о нас узнали?"},
+						{content: "Сколько времени вы были бы готовы уделять стажировке или работе в Яндексе?"},
+						{content: "Расскажите о вашем опыте разработки. Нам будет интересно всё — как серьезный интерфейс, так и просто домашняя страничка."},
+						{content: "Если вы где-нибудь работали, расскажите, какие у вас были должностные обязанности и был ли опыт работы в команде."},
+						{content: "Перечислите, какими программными продуктами вы пользуетесь в своей работе — от редактора до специализированных утилит (Intellij"
+						+ "Idea, Node.js, Uglify.js, GNU Make). Для каждого инструмента укажите, какие задачи вы с помощью него решаете и почему выбрали именно его."},
+						{content: "Пользуетесь ли вы командной строкой? Какими командами вы пользуетесь и какие задачи вы решаете с их помощью? С какими программами"
+						+ " вы преимущественно или полностью взаимодействуете через интерфейс командной строки?"},
+						{content: "Напишите на JavaScript функцию, которая выводит список всех чисел, которые равны сумме факториалов своих цифр. Пример такого числа:" 
+						+ "<p>4! + 0! + 5! + 8! + 5! = 40585</p><p>В качестве ответа на вопрос пришлите ссылку на <a href='http://jsfiddle.net/' target='blank'>http://jsfiddle.net/</a> "  
+						+ "с вашим кодом или на ваш репозиторий на <a href='https://github.com/' target='blank'>https://github.com/</a>."},
+						{content: "Вы — пилот грузового межгалактического корабля. Ваша работа — перевозка грузов с одной планету на другую. "
+						+ "Грузоподъемность вашего корабля ограничена, поэтому за один рейс вы можете перевезти не более N кг полезного груза. Ваш " 
+						+ "корабль умеет сообщать свое состояние (местоположение и степень загруженности), а также летать в любую точку пространства. " 
+						+ "Каждая планета может содержать на себе груз, который можно взять. Также на каждой планете груз можно оставить.<p>Задание</p>" 
+						+ "<p>Даны незавершенные интерфейсы корабля и планеты. Напишите недостающий код.<p><p>Полное условие задачи доступно на </p>" 
+						+ "<p><a href='https://github.com/yandex-shri/introtask-space' target='blank'>https://github.com/yandex-shri/introtask-space</a>.</p>" 
+						+ "В качестве ответа на вопрос пришлите ссылку на <a href='http://jsfiddle.net/' target='blank'>http://jsfiddle.net/</a> с вашим кодом " 
+						+ "или на ваш репозиторий на <a href='https://github.com/' target='blank'>https://github.com/</a>."},
+						{content: "Сверстайте форму-анкету с нашими заданиями для кандидатов. Страница должна работать в следующих браузерах: " 
+						+ "MSIE (8, 9, 10), Google Chrome (26, 27), Firefox (20, 21), Opera (12.15, 12.14), Яндекс.Браузер 1.5. По возможности " 
+						+ "используйте приёмы безопасной деградации CSS. Страница должна содержать интерактив, реализованный с помощью JS и jQuery." 
+						+ "Это может быть: <ul><li>проверка полноты и правильности заполнения полей (где это возможно);</li><li>возможность свернуть и " 
+						+ "развернуть разделы (аккордеон);</li><li>индикатор заполнения анкеты;</li><li>что-нибудь еще.</li></ul> <p>Подумайте над тем, " 
+						+ "как эти данные будут отправляться на сервер. <p>Будет плюсом, если вы сверстаете страницу, используя БЭМ.</p><p>Дополнительные" 
+						+ " задания</p><ol><li>Выполните задание про форму-анкету, используя один из классических шаблонизаторов: Handlebars, mustache, Dust, " 
+						+ "Jade и т.п.</li><li>Выполните задание про форму-анкету, используя один из экзотических шаблонизаторов: XSLT, YATE, BEMHTML " 
+						+ "и т.п</li></ol><p>Разработку необходимо вести на <a href='https://github.com/'>https://github.com/</a>. В качестве ответа на вопрос пришлите ссылку на проект.</p>"}
+					  ]
+			};
+			Handlebars.registerHelper('incrementbyOne', function(value){
+					return value + 1;
+			});
+			Handlebars.registerPartial("question", $("#question-partial").html());
+            var theTemplate = Handlebars.compile($("#questions").html());
+            $('body').append(theTemplate(data));
+			$('body').append("<button class='center' id='submit'>Отправить</button>");
+			jQuery.validator.addClassRules("input-wrapper", {
+			  required: true,
+			  minlength: 2
+			});
+		
+			$('#submit').on('click', function(){
+				 $("#main-form").validate({
+					invalidHandler: function(event, validator) {
+						var errors = validator.numberOfInvalids();
+						if (errors) {
+						  var message = errors == 1
+							? 'Вы не заполнили одно поле. Оно было выделено.'
+							: 'Вы не заполнили ' + errors + ' полей. Они были выделены.';
+							alert(message);
+						}
+						else{
+							alert("Отправляем данные!");
+						}
+				   }
+				}); 
+					$('#main-form').submit();
+			});
+        });
+</script>
+</head>
+<body>
+<script id="questions" type="text/x-handlebars-template">
+			<form id="main-form">
+			{{#each questions}}
+			<p>{{> question}}</p>
+			{{/each}}
+			</form>
+</script>
+<script id="question-partial" type="text/x-handlebars-template">
+		 <div class="question-header">Вопрос {{incrementbyOne @index}}</div>
+		 <div class="question-content">	
+			{{{content}}}
+			<textarea rows="4" cols="80" class="input-wrapper" id = "{{incrementbyOne @index}}" name = "input{{incrementbyOne @index}}"></textarea>
+		 </div>
+		 <div class="reset-floats">&nbsp;</div>
+		 <div class="question-end"/>
+</script>
+</body>
+</html>
